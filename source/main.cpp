@@ -75,7 +75,7 @@ void visit(const std::string& url, const std::string& domain, const std::string&
 
             if (next_url.starts_with(domain)) {
                 std::cout << "Found link: " << decoded_href << "\n";
-                std::async(std::launch::async, visit, next_url, domain, download_path);
+                auto _ = std::async(std::launch::async, visit, next_url, domain, download_path);
             }
         }
     }
