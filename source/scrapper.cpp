@@ -24,10 +24,14 @@ bool scrapper::download_to_file(const std::string& url, const std::string& outpu
 
     // Extract relative path from URL
     std::string relative_path = url.substr(domain.length());
-    if (!relative_path.empty() && relative_path[0] == '/')
-        relative_path.erase(0, 1);
+if (!relative_path.empty() && relative_path[0] == '/')
+    relative_path.erase(0, 1);
 
-    std::filesystem::path full_output_path = std::filesystem::path(output_base) / relative_path;
+// ✅ Decode URL-encoded path
+relative_path = url_decode(relative_path);
+
+// Construct full path using decoded string
+std::filesystem::path full_output_path = std::filesystem::path(output_base) / relative_path;
 
     // Create necessary parent directories
     std::filesystem::create_directories(full_output_path.parent_path());

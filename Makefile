@@ -12,7 +12,7 @@ DLL_DIR =
 CLIBS := $(foreach LIB,$(DEPENDENCIES),-l$(LIB)) $(foreach LIB,$(LIBRARIES),-l$(LIB))
 CC = g++
 
-CFLAGS = -Wall $(addprefix -I, $(INC_DIR)) -Wno-deprecated-declarations -std=c++20
+CFLAGS = -Wall $(addprefix -I, $(INC_DIR)) -Wno-deprecated-declarations -std=c++23
 ifeq ($(MODE), release)
     CFLAGS += -O3
 else
